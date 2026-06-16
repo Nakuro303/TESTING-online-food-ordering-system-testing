@@ -1,0 +1,11 @@
+scenario 1
+sign in -> Log in -> pilih makanan, add to cart -> masukan informasi pengguna -> selesai order -> log out
+
+scenario 2
+sign in -> Log in -> order -> pilih order yang ingin di cancel plus isi alas an cancel -> selesai -> logout
+
+scenario 3
+log in admin -> menu management -> tambah makanan/minuman -> isi keterangan makanan/minuman -> simpan dan selesai -> log out
+
+scenario 4
+log in admin -> menu management -> menghapus makanan/minuman -> simpan dan selesai -> logout

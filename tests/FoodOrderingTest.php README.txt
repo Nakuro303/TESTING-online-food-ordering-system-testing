@@ -1,0 +1,74 @@
+/**
+ * FoodOrderingTest.php
+ *
+ * Unit Test untuk sistem Online Food Ordering.
+ *
+ * Struktur:
+ *   - 10 fungsi pengujian (testXxx)
+ *   - 30 assertion total (3 assertion per fungsi)
+ *
+ * Cara menjalankan:
+ *   composer require --dev "phpunit/phpunit:^11"
+ *   ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+ *   ./vendor/bin/phpunit tests/FoodOrderingTest.php
+ */
+
+Function 1 — validateUserRegistration
+Memastikan registrasi pengguna baru hanya lolos jika semua field wajib terisi dan email berformat benar.
+Assertion 1: Data lengkap & email valid → harus true
+Assertion 2: Email tanpa "@" → harus false
+Assertion 3: Password kosong → harus false
+
+Function 2 — validateUserLogin
+Memastikan login hanya lolos jika email & password valid.
+Assertion 4: Kredensial valid → harus true
+Assertion 5: Email kosong → harus false
+Assertion 6: Email tidak berformat benar → harus false
+
+Function 3 — calculateCartTotal
+Memastikan total harga keranjang dihitung dengan tepat.
+Assertion 7: (1000×2) + (760×1) = 2760
+Assertion 8: Keranjang kosong → total harus 0
+Assertion 9: Satu item dengan quantity 3
+
+Function 4 — isItemAlreadyInCart
+Memastikan pengecekan duplikat item dalam keranjang bekerja.
+Assertion 10: Item sudah ada → harus true
+Assertion 11: Item belum ada → harus false
+Assertion 12: Keranjang kosong → harus false
+
+Function 5 — validateOrderData
+Memastikan data pesanan hanya lolos jika semua field terisi dan metode pembayaran bukan "card".
+Assertion 13: Data lengkap & metode cash → harus true
+Assertion 14: Metode pembayaran "card" → harus false
+Assertion 15: Field alamat kosong → harus false
+
+Function 6 — calculateOrderTotal
+Memastikan kalkulasi grand total (subtotal + ongkir) benar.
+Assertion 16: Subtotal 2760 + ongkir 15 → 2775
+Assertion 17: Tanpa ongkir (0) → sama dengan subtotal
+Assertion 18: Nilai negatif → kembalikan 0
+
+Function 7 — validateCancelOrder
+Memastikan pembatalan pesanan hanya diproses jika ID valid dan alasan pembatalan tidak kosong.
+Assertion 19: ID valid + alasan terisi → harus true
+Assertion 20: ID = 0 → harus false
+Assertion 21: Alasan kosong → harus false
+
+Function 8 — validateReview
+Memastikan ulasan hanya disimpan jika rating 1–5 dan teks ulasan tidak kosong.
+Assertion 22: orderId valid, rating 5, teks terisi → harus true
+Assertion 23: Rating 6 (di luar 1–5) → harus false
+Assertion 24: Teks ulasan kosong → harus false
+
+Function 9 — validateReservation
+Memastikan data reservasi meja valid sebelum disimpan ke DB.
+Assertion 25: Data lengkap dan tanggal di masa depan → harus true
+Assertion 26: Tanggal di masa lalu → harus false
+Assertion 27: Jumlah tamu 0 → harus false
+
+Function 10 — applyCartItemDiscount
+Memastikan diskon item diterapkan secara benar dan input tidak valid tidak mengubah harga asli.
+Assertion 28: Diskon 10% dari harga 1000 → 900
+Assertion 29: Diskon 0% → harga tidak berubah
+Assertion 30: Diskon negatif (tidak valid) → kembalikan harga asli

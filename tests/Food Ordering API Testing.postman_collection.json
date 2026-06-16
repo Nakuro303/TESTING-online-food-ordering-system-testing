@@ -1,0 +1,597 @@
+{
+  "info": {
+    "_postman_id": "8fd916c2-c627-4253-bffb-b160c2de1896",
+    "name": "Food Ordering API Testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52787941"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time kurang dari 3000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "pm.test(\"Response mengandung pesan registrasi\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Registered successfully\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "firstName",
+              "value": "Budi",
+              "type": "text"
+            },
+            {
+              "key": "lastName",
+              "value": "Santoso",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "budi.santoso@gmail.com",
+              "type": "text"
+            },
+            {
+              "key": "contact",
+              "value": "081234567890",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/dbregister.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "dbregister.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response mengandung pesan 'logged in'\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"logged in\");",
+              "});",
+              "",
+              "pm.test(\"Content-Type adalah text/html\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "budi.santoso@gmail.com",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/dblogin.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "dblogin.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login Failed",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response tidak mengandung 'logged in'\", function () {",
+              "    pm.expect(pm.response.text()).to.not.include(\"logged in\");",
+              "});",
+              "",
+              "pm.test(\"Response time kurang dari 3000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "budi.santoso@test.com",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "wrongpassword999",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/dblogin.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "dblogin.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add to Cart",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response adalah JSON yang valid\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Response JSON memiliki property 'status'\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"status\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "pid",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "pname",
+              "value": "Nasi Goreng Spesial",
+              "type": "text"
+            },
+            {
+              "key": "pprice",
+              "value": "25000",
+              "type": "text"
+            },
+            {
+              "key": "pimage",
+              "value": "nasi_goreng.jpg",
+              "type": "text"
+            },
+            {
+              "key": "pcode",
+              "value": "Makanan",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/add_to_cart.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "add_to_cart.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add to Cart tanpa Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response adalah JSON yang valid\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Response JSON memiliki property 'status' error\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"status\");",
+              "    pm.expect(jsonData.status).to.eql(\"error\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "pid",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "pname",
+              "value": "Mie Goreng",
+              "type": "text"
+            },
+            {
+              "key": "pprice",
+              "value": "20000",
+              "type": "text"
+            },
+            {
+              "key": "pimage",
+              "value": "mie_goreng.jpg",
+              "type": "text"
+            },
+            {
+              "key": "pcode",
+              "value": "Makanan",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/add_to_cart.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "add_to_cart.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Jumlah Kuantitas Item di Cart",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time kurang dari 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});",
+              "",
+              "pm.test(\"Response body tidak mengandung pesan error\", function () {",
+              "    pm.expect(pm.response.text().toLowerCase()).to.not.include(\"fatal error\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "id",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "quantity",
+              "value": "3",
+              "type": "text"
+            },
+            {
+              "key": "total_price",
+              "value": "75000",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/update_cart_quantity.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "update_cart_quantity.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Menghapus Item dari Cart",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response adalah JSON yang valid\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Response JSON memiliki property 'success'\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"success\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "id",
+              "value": "1",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/delete_cart_item.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "delete_cart_item.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Order",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response adalah JSON yang valid\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Response JSON berupa array\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/fetch_orders.php?status=All",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "fetch_orders.php"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "All"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Order",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response mengandung pesan pembatalan order\", function () {",
+              "    var responseText = pm.response.text();",
+              "    pm.expect(responseText).to.satisfy(function(text) {",
+              "        return text.includes(\"cancelled\") || text.includes(\"Invalid\") || text.includes(\"Order has been\");",
+              "    });",
+              "});",
+              "",
+              "pm.test(\"Response body tidak kosong\", function () {",
+              "    pm.expect(pm.response.text()).to.not.be.empty;",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "orderId",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "reason",
+              "value": "Ingin mengubah menu pesanan",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/cancel_order.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cancel_order.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Total Menu",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code adalah 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response adalah JSON yang valid\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Response JSON memiliki property 'totalItems'\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"totalItems\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/Admin/fetch_menuitems.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "Admin",
+            "fetch_menuitems.php"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/online-food-ordering-system"
+    }
+  ]
+}

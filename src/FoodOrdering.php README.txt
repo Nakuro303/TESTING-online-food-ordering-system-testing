@@ -1,0 +1,65 @@
+/**
+ * FoodOrdering.php
+ *
+ * Kelas logika bisnis yang diekstrak dari sistem Online Food Ordering.
+ * Mencakup validasi & kalkulasi untuk: User, Cart, Order, Review, dan Reservation.
+ */
+    // ─────────────────────────────────────────────────────────────
+    // 1. validateUserRegistration
+    //    Memvalidasi data registrasi pengguna baru.
+    //    Mengembalikan true jika semua field terisi dan email valid.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 2. validateUserLogin
+    //    Memvalidasi bahwa email & password tidak kosong dan email
+    //    berformat benar sebelum dikirim ke database.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 3. calculateCartTotal
+    //    Menghitung total harga seluruh item di keranjang.
+    //    Setiap item adalah array ['price' => float, 'quantity' => int].
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 4. isItemAlreadyInCart
+    //    Mengecek apakah item dengan nama tertentu sudah ada
+    //    di keranjang pengguna (duplikat check di add_to_cart.php).
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 5. validateOrderData
+    //    Memvalidasi data pesanan sebelum INSERT ke tabel orders.
+    //    Mengembalikan true jika semua field wajib terisi.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 6. calculateOrderTotal
+    //    Menghitung grand total pesanan = subtotal + ongkos kirim.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 7. validateCancelOrder
+    //    Memvalidasi permintaan pembatalan pesanan.
+    //    orderId harus > 0 dan alasan pembatalan tidak boleh kosong.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 8. validateReview
+    //    Memvalidasi data ulasan sebelum INSERT ke tabel reviews.
+    //    Rating harus antara 1 s.d. 5; reviewText tidak boleh kosong.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 9. validateReservation
+    //    Memvalidasi data reservasi meja.
+    //    noOfGuests harus >= 1; reservedDate tidak boleh di masa lalu.
+    // ─────────────────────────────────────────────────────────────
+
+    // ─────────────────────────────────────────────────────────────
+    // 10. applyCartItemDiscount
+    //     Menerapkan diskon (persentase) ke satu item keranjang.
+    //     Mengembalikan harga akhir setelah diskon.
+    //     Diskon tidak boleh negatif atau > 100%.
+    // ─────────────────────────────────────────────────────────────

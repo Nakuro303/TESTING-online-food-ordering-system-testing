@@ -23,33 +23,44 @@ Persyaratan Sistem:
 
 Langkah untuk menjalankan web online-food-ordering-system-testing
 1. Instalisasi:
-   - git clone https://github.com/Nakuro303/TESTING-online-food-ordering-system-testing.git
-   - cd TESTING-online-food-ordering-system-testing
+   ```bash
+   git clone https://github.com/Nakuro303/TESTING-online-food-ordering-system-testing.git
+   cd TESTING-online-food-ordering-system-testing
+   ```
      
 2. Instalasi Dependensi:
-   - composer install
-   - Buka MySQL client (phpMyAdmin / HeidiSQL / terminal) dan impor file "restaurant.sql"
+   ```bash
+   composer install
+   ```
+   - Buka MySQL client (phpMyAdmin / HeidiSQL / terminal) dan impor file `restaurant.sql`
      
 3. Menjalankan Unit Testing:
    - instalasi depedensi:
+     ```bash
      composer require --dev phpunit/phpunit
+     ```
    - menjalankan test:
-     .\vendor\bin\phpunit tests\FoodOrderingTest.php
+     ```bash
+     vendor/bin/phpunit tests/FoodOrderingTest.php
+     ```
     
 4. Menjalankan API Testing:
-   - Install aplikasi Postman, melalui link berikut ini:
-     https://www.postman.com/downloads/
-   - Impor file "Food Ordering API Testing.postman_collection.json" kedalam aplikasi postman.
+   - Install aplikasi Postman, melalui link berikut ini: https://www.postman.com/downloads/
+   - Impor file `Food Ordering API Testing.postman_collection.json` kedalam aplikasi postman.
    - jalankan "Run Collection" untuk menjalankan test.
      
 5. Menjalankan Database Testing:
-   - Buka MySQL client (phpMyAdmin / HeidiSQL / terminal) dan impor file "database_testing.sql" pada folder "tests"
+   - Buka MySQL client (phpMyAdmin / HeidiSQL / terminal) dan impor file `database_testing.sql` pada folder `tests`
    - jalankan perintah, untuk menjalankan Database Testing:
+     ```bash
      vendor/bin/phpunit tests/DatabaseTest.php
+     ```
     
 6. Menjalankan Selenium:
-   - cd tests
-   - python -m pytest test_food_ordering_selenium.py -v
+   ```bash
+   cd tests
+   python -m pytest test_food_ordering_selenium.py -v
+   ```
 
 ENGLISH (ENG):
 
@@ -76,33 +87,44 @@ System Requirements:
 
 Steps to run the online-food-ordering-system-testing web application:
 1. Installation:
-   - git clone https://github.com/Nakuro303/TESTING-online-food-ordering-system-testing.git
-   - cd TESTING-online-food-ordering-system-testing
+   ```bash
+   git clone https://github.com/Nakuro303/TESTING-online-food-ordering-system-testing.git
+   cd TESTING-online-food-ordering-system-testing
+   ```
 
 2. Dependency Installation:
-   - composer install
-   - Open your MySQL client (phpMyAdmin / HeidiSQL / terminal) and import the "restaurant.sql" file
+   ```bash
+   composer install
+   ```
+   - Open your MySQL client (phpMyAdmin / HeidiSQL / terminal) and import the `restaurant.sql` file
 
-4. Running Unit Testing:
+3. Running Unit Testing:
    - dependency installation:
-   - composer require --dev phpunit/phpunit
+     ```bash
+     composer require --dev phpunit/phpunit
+     ```
    - running the test:
-      .\vendor\bin\phpunit tests\FoodOrderingTest.php
+     ```bash
+     vendor/bin/phpunit tests/FoodOrderingTest.php
+     ```
 
-5. Running API Testing:
-   - Install the Postman application through the following link:
-   - https://www.postman.com/downloads/
-   - Import the "Food Ordering API Testing.postman_collection.json" file into the Postman application.
+4. Running API Testing:
+   - Install the Postman application through the following link: https://www.postman.com/downloads/
+   - Import the `Food Ordering API Testing.postman_collection.json` file into the Postman application.
    - Execute "Run Collection" to run the tests.
 
-6. Running Database Testing:
-   - Open your MySQL client (phpMyAdmin / HeidiSQL / terminal) and import the "database_testing.sql" file located inside the "tests" folder.
+5. Running Database Testing:
+   - Open your MySQL client (phpMyAdmin / HeidiSQL / terminal) and import the `database_testing.sql` file located inside the `tests` folder.
    - Run the following command to execute the Database Testing:
-      vendor/bin/phpunit tests/DatabaseTest.php
+     ```bash
+     vendor/bin/phpunit tests/DatabaseTest.php
+     ```
 
-7. Running Selenium:
-   - cd tests
-   - python -m pytest test_food_ordering_selenium.py -v
+6. Running Selenium:
+   ```bash
+   cd tests
+   python -m pytest test_food_ordering_selenium.py -v
+   ```
 
 Tangkapan Layar - Screenshot:
 1. Hasil Unit Testing - Unit Testing Results:
